@@ -1,6 +1,10 @@
 \documentclass[a4paper]{article}
 
+\usepackage{listings}
+\usepackage{graphicx}
 \usepackage{fancyhdr}
+\usepackage{color}
+\usepackage{xcolor}
 \pagestyle{fancy}
 
 \lhead{Tube Tracker}
@@ -8,6 +12,20 @@
 \lfoot{Final Report}
 \cfoot{\thepage}
 \rfoot{Gareth Pulham, 40099603}
+
+\lstdefinestyle{customc}{
+    belowcaptionskip=1\baselineskip,
+    frame=single,
+    xleftmargin=\parindent,
+    language=C,
+    showstringspaces=false,
+    basicstyle=\footnotesize\ttfamily,
+    keywordstyle=\bfseries\color{green!40!black},
+    commentstyle=\itshape\color{purple!40!black},
+    identifierstyle=\color{blue},
+    stringstyle=\color{orange},
+}
+
 
 \begin{document}
     \begin{titlepage}
@@ -41,5 +59,16 @@
     elit.   Etiam  lobortisfacilisis sem.  Nullam nec mi et 
     neque pharetra sollicitudin.  Praesent imperdietmi nec ante. 
     Donec ullamcorper, felis non sodales...
+
+    \section{Schematic}
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.75\textwidth]{images/schematic}
+        \caption{It's the schematics}
+    \end{figure}
+
+
+    \section{Source}
+    \lstinputlisting[style=customc]{../src/tracker.c}
 
 \end{document}

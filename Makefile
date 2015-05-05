@@ -6,6 +6,6 @@ view: report.pdf
 	evince report.pdf
 
 clean:
-	rm -f *.aux *.toc *.log *.pdf
+	rm -f *.aux *.toc *.log *.pdf *.bcf *.xml
 
 .PHONY: view clean

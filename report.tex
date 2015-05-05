@@ -72,11 +72,11 @@
             \item Electromechanical
             \item Electromagnetic
             \item Ultrasonic
-            \item and Radiological
+            \item Radiological
         \end{itemize}
         For the purposes of this project, radiological sensing is not considered a viable option due to it's highly controlled distribution and the impact it has on patients and operators, amongst other reasons.
 
-        An optically guided solution would also not be suitable for this project, as it depends on a number of preparatory steps, such as registering a 3D model of the operating area. Additionally, they are most effective with rigid tools, unlike the catheter that this project aims to use.
+        An optically guided solution would also not be suitable for this project, as it depends on a number of preparatory steps, such as registering a 3D model of the operating area. Additionally, they are most effective with rigid tools, unlike the catheter that this project aims to use. However, within these circumstances it's a rapidly growing field with good results[1].
 
         This leaves three remaining options: ultrasonic, electromagnetic, and electromechanical.
 
@@ -110,7 +110,7 @@
     \section{Implementation}
         \subsection{Input - Sensing system}
         After deciding to use an electromagnetic sensing system as part of the system design, further research at this stage was called for to find out more about previous study of the effectiveness of different methods.
-        This research found several studies that trialled using simple handheld metal detectors to identify foreign bodies swallowed by children(!!!).
+        This research found several studies that trialled using simple handheld metal detectors to identify foreign bodies swallowed by children[2].
         Being able to use COTS parts such as airport-style metal detectors was a major boon as this drastically reduced the complexity of what needed to be implemented specifically for this project.
 
         This complexity is however instead swapped out for the need to reverse engineer an otherwise closed system to get the information needed to present the user with a reading - and this is where the majority of the time used implementing this project was spent.
@@ -163,13 +163,58 @@
             \includegraphics[width=\textwidth]{images/complete.png}
             \caption{The complete system diagram showing components relevant to the project}
         \end{figure}
+        
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=0.75\textwidth]{images/schematic}
+            \caption{The schematics of the implemented prototype}
+        \end{figure}
 
+    \section{Testing}
+        \subsection{LED testing}
+        Verify that the device can drive the LEDs correctly and that they are of equal brightness.
+        
+        \emph{Method}:
+        Install lamp test program and run.
 
-    \section{Schematic}
-    \begin{figure}[h]
-        \centering
-        \includegraphics[width=0.75\textwidth]{images/schematic}
-        \caption{The schematics of the implemented prototype}
-    \end{figure}
+        \emph{Expected}:
+        Verify that LEDs blink at approx 1Hz, are all of equal brightness, are all lit together.
+
+        \emph{Actual}:
+        All LEDs lit together, of equal brightness, at approx. 1Hz.
+
+        \subsection{Input testing}
+        Verify that the microcontroller's ADC is correctly initialised, can read the voltage tap, and is correctly calibrated.
+        
+        \emph{Method}:
+        Observe LED output as metal object is moved closer and further from RF coil.
+
+        \emph{Expected}:
+        Verify that when no metal is present, all LEDs are off and when metal is placed directly on the coil, all LEDs are lit.
+
+        \emph{Actual}:
+        With no metal, LEDs are all off. Moving metal closer turns each LED on in turn until all are lit when metal is very close to coil.
+
+    \section{Results}
+    Between the design, implementation, and testing of the device, it can be seen the the device works correctly.
+
+    An initial concern when starting this project is that due to the compact end packaging, readings would be impacted by the devices own signature, but it was found through calibration this could be avoided.
+
+    \section{Conclusion and Future Work}
+    Ultimately, the project worked as designed. It was noted that the calibration for the device is hard coded, and this would be a problem in mass production. The current calibration process has to be done not just per-device but per hardware revision, as while the voltages read were fairly stable once connected, they varied significantly depending on what hardware was attached.
+
+    In terms of future work, the overarching project, the ``Swiss Army Nurse'' project, aims to produce more, similar devices as a hand held toolkit.
+    As well as further work horizontally into these other tools, there's iterative work that can be done to decrease the footprint.
+    Preliminary work has already begun for this will a PCB laid out with a much smaller area than the current veroboard based implementation.
+
+    \section{Evaluation of Achievement}
+    Overall, I found this project to be an interesting challenge, focussing more on reverse engineering and developing my understanding of existing systems than the development of my own.
+    In particular, I learned about how best to work from a high level understanding of an entire system and drill down to understand the details of specific parts relevant to my own work.
+
+    If I had the chance to start over, I think one of the changes I'd make would be to set aside more time to research and better understand how the RF section works, as some of the future work that this project would cover would be the reimplementation of the entire metal detector as part of the effort to minimise the footprint and reduce power consumption.
+
+    \section{Bibliography}
+    [1] Somogyi-Ganss, \emph{Evaluation of the Accuracy of NaviDent, a Novel Dynamic Computer-Guided Navigation System for Placing Dental Implants}, 2013\newline
+    [2] J B Lee \emph{et al.}, \emph{Detection of coins ingested by children using a handheld metal detector: a systematic review}, 2004
 
 \end{document}
